@@ -1,4 +1,5 @@
 #include "homePage.h"
+#include "testing.h"
 
 homePage::homePage()
 {
@@ -36,7 +37,6 @@ homePage::homePage()
     home_page_layout->setColumnStretch(3, 1);
 
     setting = new settings;
-    test = new testing;
 
     connect(m_quit, SIGNAL(clicked()), qApp, SLOT(quit()));
     connect(m_settings, SIGNAL(clicked()), this, SLOT(OpenSettings()));
@@ -52,5 +52,6 @@ void homePage::OpenSettings()
 
 void homePage::StartTest()
 {
-    this->stackedWidget->setCurrentIndex(1);
+    testing *test = new testing(this->setting);
+    test->Begin();
 }

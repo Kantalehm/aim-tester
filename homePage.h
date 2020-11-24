@@ -15,7 +15,6 @@ class homePage : public QWidget
         homePage();
 
     private:
-        QStackedWidget *stackedWidget;
         QLabel *m_title;
         QFont m_title_font;
         QFont m_button_font;

@@ -15,7 +15,15 @@ class settings: public QDialog
     private:
         QLineEdit *edit_target_count;
         QSlider *slider_size;
+        QPixmap target_pixmap;
         QLabel *target_renderer;
+        QPushButton *validate;
+        QPushButton *cancel;
+
+    public slots:
+        void Validate();
+        void Cancel();
+        void ChangeTargetSize(int size);
 };
 
 #endif // SETTINGS_H
