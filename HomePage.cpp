@@ -22,13 +22,18 @@ homePage::homePage()
     m_settings->setIcon(QIcon(QtUtils::FilePath("aim_tester_settings.png")));
     m_quit->setFont(m_button_font);
 
+    QLabel *logo = new QLabel;
+    logo->setPixmap(QPixmap(QtUtils::FilePath("aim_tester_icon.png")));
+
+    home_page_layout->addWidget(logo, 0, 1, 1, 2);
+
     home_page_layout->addWidget(m_title, 1, 0, 1, 4);
+    home_page_layout->addWidget(m_quit, 0, 3);
     home_page_layout->addWidget(m_start, 2, 0, 1, 2);
     home_page_layout->addWidget(m_settings, 2, 2, 1, 2);
-    home_page_layout->addWidget(m_quit, 0, 3);
-    home_page_layout->addWidget(m_quit, 2, 1, 1, 1);
+    // home_page_layout->addWidget(m_start, 2, 1, 1, 1);
 
-
+    home_page_layout->setAlignment(m_quit, Qt::AlignTop);
     home_page_layout->setAlignment(m_title, Qt::AlignHCenter);
 
     home_page_layout->setColumnStretch(0, 8);
