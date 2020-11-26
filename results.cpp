@@ -12,6 +12,7 @@ results::results(struct test_data data)
     this->test_time = (double)data.time / 1000;
     this->target_size = data.target_size;
     this->target_count = data.target_count;
+    this->res = data.screen_res;
     qDebug() << test_time;
     Initialization();
 }
@@ -24,11 +25,18 @@ void results::Initialization()
     bottom_layout = new QHBoxLayout;
 
     target = new QLabel;
-    target->setPixmap(QPixmap(QtUtils::FilePath("target.png")).scaled(256, 256));
+    target->setPixmap(QPixmap(QtUtils::FilePath("target_result.png")));
 
     percentage = new QLabel;
-
+    percentage->setFont(QtUtils::basic_font);
     time = new QLabel;
+    time->setFont(QtUtils::basic_font);
+    resolution = new QLabel;
+    resolution->setFont(QtUtils::basic_font);
+    target_count_label = new QLabel;
+    target_count_label->setFont(QtUtils::basic_font);
+    target_size_label = new QLabel;
+    target_size_label->setFont(QtUtils::basic_font);
 
     close = new QPushButton("Close");
     save = new QPushButton("Save");
@@ -37,14 +45,28 @@ void results::Initialization()
     save->setDisabled(true);
     bottom_layout->addWidget(close);
 
+    layout->addWidget(resolution);
+    layout->addWidget(target_count_label);
+    layout->addWidget(target_size_label);
     layout->addWidget(time);
     layout->addWidget(percentage);
     layout->addWidget(target);
     layout->addLayout(bottom_layout);
 
+
+    layout->setAlignment(resolution, Qt::AlignCenter);
+    layout->setAlignment(target_count_label, Qt::AlignCenter);
+    layout->setAlignment(target_size_label, Qt::AlignCenter);
+    layout->setAlignment(time, Qt::AlignCenter);
+    layout->setAlignment(percentage, Qt::AlignCenter);
+    layout->setAlignment(target, Qt::AlignCenter);
+    layout->setAlignment(bottom_layout, Qt::AlignCenter);
     layout->setAlignment(Qt::AlignCenter);
     this->setLayout(layout);
 
+    resolution->setText("Window resolution: " + QString::number(res.first) + "x" + QString::number(res.second) + "px");
+    target_count_label->setText("Target count: " + QString::number(target_count));
+    target_size_label->setText("Target size: " + QString::number(target_size) + " px");
     time->setText("Test duration: " + QString::number(test_time) + " seconds.");
     percentage->setText("Target hit rate: " + QString::number(ComputePercentage()) + "%");
 
@@ -62,12 +84,12 @@ void results::PlaceCursors()
 {
     for (int i = 0; i < target_count; i++)
     {
-        int x = (clics[i].first - targets[i].first + target_size/2) * 256.0/target_size;
-        int y = (clics[i].second - targets[i].second + target_size/2) * 256.0/target_size;
+        int x = (clics[i].first - targets[i].first + target_size/2) * 200.0/target_size + 200;
+        int y = (clics[i].second - targets[i].second + target_size/2) * 200.0/target_size + 200;
         qDebug() << "(" + QString::number(x) + ", " + QString::number(y) + ")";
         QLabel *cross = new QLabel(target);
         cross->setPixmap(QPixmap(QtUtils::FilePath("cross.png")));
-        cross->move(x, y);
+        cross->move(x - 10, y - 10);
     }
 }
 

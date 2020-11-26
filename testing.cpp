@@ -5,6 +5,7 @@ testing::testing()
 
     target_count = 15;
     target_size = 64;
+    screen_res = std::pair<int, int>(600, 400);
     Initialization();
 
 }
@@ -13,6 +14,7 @@ testing::testing(settings *setting)
 {
     target_count = setting->target_count;
     target_size = setting->target_size;
+    screen_res = setting->screen_res;
     Initialization();
 }
 
@@ -24,20 +26,26 @@ void testing::Initialization()
     top_layout = new QHBoxLayout;
     frame_layout = new QVBoxLayout;
 
-    resize(640, 420);
+    resize(screen_res.first, screen_res.second);
 
     quit = new QPushButton("Quit");
-    view_results = new QPushButton("View Results");
+    quit->setFont(QtUtils::basic_font);
+    test_complete = new QLabel("Test complete!");
+    test_complete->setFont(QtUtils::title_font);
+    view_results = new QPushButton("View results");
+    view_results->setFont(QtUtils::button_font);
     countdown = new QLabel;
+    countdown->setFont(QtUtils::countdown_font);
     frame = new QFrame;
-
 
     // top_layout->addWidget(countdown);
     top_layout->addWidget(quit);
     top_layout->setAlignment(quit, Qt::AlignRight);
 
     frame_layout->addWidget(countdown);
+    frame_layout->addWidget(test_complete);
     frame_layout->addWidget(view_results);
+    test_complete->hide();
     view_results->hide();
     frame_layout->setAlignment(countdown, Qt::AlignCenter);
     frame->setLayout(frame_layout);
@@ -81,10 +89,11 @@ void testing::StartCountdown()
             StartTest();
             frame_layout->removeWidget(countdown);
             top_layout->insertWidget(0, countdown);
+            countdown->setFont(QtUtils::basic_font);
         }
         countdown->setText(QString::number((double)elapsed_timer.elapsed()/1000 - 3, 'g') + "\ts");
     }
-    // countdown->setText("(" + QString::number(QCursor::pos().x() - this->geometry().left()) + " ; " + QString::number(QCursor::pos().y() - this->geometry().top())  +
+    // countdown->setText("(" + QString::number(QCursor::pos().x() - this->geometry().left()) + " ; " + QString::number(QCursor::pos().y() - this->geometry().top()));
                        // ") | frame L T R B: " + QString::number(frame->geometry().left()) + " ; " + QString::number(frame->geometry().top()) + " ; " +  QString::number(frame->geometry().right()) + " ; " +  QString::number(frame->geometry().bottom()));
 }
 
@@ -110,15 +119,19 @@ void testing::mousePressEvent(QMouseEvent *event)
 {
     if (test_began)
     {
+        std::pair<int, int> cursor = std::pair<int, int>(QCursor::pos().x() - this->geometry().left(), QCursor::pos().y() - this->geometry().top());
+        qDebug() << cursor;
         if ((int)target_positions.size() == target_count)
         {
             clic_positions.push_back(std::pair<int, int>(QCursor::pos().x() - this->geometry().left(), QCursor::pos().y() - this->geometry().top()));
             target->hide();
-            top_layout->removeWidget(countdown);
-            frame_layout->addWidget(countdown);
-            countdown->setText("Test complete!");
+            countdown->hide();
+            test_complete->show();
             view_results->show();
-            data = {target_positions, clic_positions, elapsed_timer.elapsed() - 3000, this->target_size, this->target_count};
+            frame_layout->setAlignment(view_results, Qt::AlignCenter);
+            frame_layout->setAlignment(test_complete, Qt::AlignCenter);
+            frame_layout->setAlignment(Qt::AlignCenter);
+            data = {target_positions, clic_positions, elapsed_timer.elapsed() - 3000, this->target_size, this->target_count, screen_res};
         }
         else
         {

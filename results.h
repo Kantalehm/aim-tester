@@ -15,10 +15,14 @@ class results : public QDialog
         double test_time;
         int target_size;
         int target_count;
+        std::pair<int, int> res;
 
         QVBoxLayout *layout;
         QHBoxLayout *bottom_layout;
 
+        QLabel *resolution;
+        QLabel *target_count_label;
+        QLabel *target_size_label;
         QLabel *target;
         QLabel *percentage;
         QLabel *time;

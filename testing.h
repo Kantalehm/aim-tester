@@ -14,6 +14,7 @@ class testing : public QDialog
         // settings *setting;
         int target_count;
         int target_size;
+        std::pair<int, int> screen_res;
 
         QVBoxLayout *layout;
         QHBoxLayout *top_layout;
@@ -22,6 +23,7 @@ class testing : public QDialog
         QLabel *target;
 
         QLabel *countdown;
+        QLabel *test_complete;
         QFrame *frame;
         QElapsedTimer elapsed_timer;
         QPushButton *quit;

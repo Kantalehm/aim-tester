@@ -1,5 +1,4 @@
 #include <QApplication>
-#include "clickHandler.h"
 #include "homePage.h"
 
 int main(int argc, char *argv[])

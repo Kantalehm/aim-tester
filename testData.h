@@ -9,5 +9,6 @@ struct test_data{
     qint64 time;
     int target_size;
     int target_count;
+    std::pair<int, int> screen_res;
 };
 #endif // TESTDATA_H
