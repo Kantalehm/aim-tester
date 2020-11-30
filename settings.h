@@ -16,6 +16,9 @@ class settings: public QDialog
 
     private:
 
+        QLabel *dark_theme_label;
+        QCheckBox *dark_theme;
+
         QLabel *screen_res_label;
         QLabel *target_count_label;
         QLabel *target_size_label;
@@ -37,6 +40,7 @@ class settings: public QDialog
         void Cancel();
         void ChangeTargetSize(int size);
         void DisplaySize(int size);
+        void ChangeTheme(int state);
 };
 
 #endif // SETTINGS_H
