@@ -16,6 +16,14 @@ class settings: public QDialog
 
     private:
 
+        QButtonGroup *mode_selection;
+        QGroupBox *mode_selection_group;
+        QGridLayout *mode_selection_layout;
+        QRadioButton *fixed_target_count_mode;
+        QRadioButton *fixed_time_mode_1;
+        QRadioButton *fixed_time_mode_2;
+        QRadioButton *endless_mode;
+
         QLabel *dark_theme_label;
         QCheckBox *dark_theme;
 

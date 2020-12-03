@@ -1,5 +1,6 @@
 #include <QApplication>
 #include "homePage.h"
+#include "homepage2.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,6 +13,8 @@ int main(int argc, char *argv[])
     // clickHandler.show();
 
     homePage home_page;
+    homePage2 home_page2;
+    qApp->setFont(QtUtils::basic_font);
 
     QPalette darkTheme;
     darkTheme.setColor(QPalette::Window,          QColor( 37,  37,  37));

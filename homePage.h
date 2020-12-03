@@ -5,6 +5,7 @@
 #include "settings.h"
 #include "testing.h"
 #include "utils.h"
+#include "settings2.h"
 
 class homePage : public QWidget
 {
@@ -21,7 +22,7 @@ class homePage : public QWidget
         QPushButton *m_quit;
         QPushButton *m_settings;
         testing *test;
-        settings *setting;
+        Settings2 *setting;
 
     private slots:
         void OpenSettings();
