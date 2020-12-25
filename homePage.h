@@ -22,7 +22,7 @@ class homePage : public QWidget
         QPushButton *m_quit;
         QPushButton *m_settings;
         testing *test;
-        Settings2 *setting;
+        settings *setting;
 
     private slots:
         void OpenSettings();

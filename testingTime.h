@@ -1,18 +1,17 @@
-#ifndef TESTING_H
-#define TESTING_H
+#ifndef TESTINGTIME_H
+#define TESTINGTIME_H
 
 #include "QtUtils.h"
-#include "settings.h"
-#include "results.h"
+#include "settings2.h"
 #include "testData.h"
 
-class testing : public QDialog
+class TestingTime : public QDialog
 {
     Q_OBJECT
 
     private:
         // settings *setting;
-        int target_count;
+        int time_limit;
         int target_size;
         std::pair<int, int> screen_res;
 
@@ -37,15 +36,13 @@ class testing : public QDialog
         void Initialization();
         void StartTest();
         std::pair<int, int> MoveTarget();
-
-    protected:
         void mousePressEvent(QMouseEvent *event);
 
         test_data data;
 
     public:
-        testing();
-        testing(settings *setting);
+        TestingTime();
+        TestingTime(Settings2 *settings);
 
         void Begin();
 
@@ -56,4 +53,4 @@ class testing : public QDialog
 
 };
 
-#endif // TESTING_H
+#endif // TESTINGTIME_H

@@ -22,8 +22,11 @@ settings::settings()
     fixed_target_count_mode = new QRadioButton("Fixed target count");
     fixed_target_count_mode->setChecked(true);
     fixed_time_mode_1 = new QRadioButton("Fixed time 1");
+    fixed_time_mode_1->setEnabled(false);
     fixed_time_mode_2 = new QRadioButton("Fixed time 2");
+    fixed_time_mode_2->setEnabled(false);
     endless_mode = new QRadioButton("Endless");
+    endless_mode->setEnabled(false);
 
     screen_res_input = new QComboBox;
     res_map = {

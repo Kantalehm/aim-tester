@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
     // clickHandler.show();
 
     homePage home_page;
-    homePage2 home_page2;
+    // homePage2 home_page2;
     qApp->setFont(QtUtils::basic_font);
 
     QPalette darkTheme;

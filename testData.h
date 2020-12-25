@@ -11,4 +11,13 @@ struct test_data{
     int target_count;
     std::pair<int, int> screen_res;
 };
+
+struct time_test_data{
+    std::vector<std::pair<int, int>> target_positions;
+    std::vector<std::pair<int, int>> mouse_positions;
+    int time_limit;
+    int target_size;
+    std::pair<int, int> screen_res;
+};
+
 #endif // TESTDATA_H

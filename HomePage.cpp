@@ -41,7 +41,7 @@ homePage::homePage()
     home_page_layout->setColumnStretch(2, 8);
     home_page_layout->setColumnStretch(3, 1);
 
-    setting = new Settings2;
+    setting = new settings;
 
     connect(m_quit, SIGNAL(clicked()), qApp, SLOT(quit()));
     connect(m_settings, SIGNAL(clicked()), this, SLOT(OpenSettings()));
@@ -57,6 +57,6 @@ void homePage::OpenSettings()
 
 void homePage::StartTest()
 {
-    // testing *test = new testing(this->setting);
-    // test->Begin();
+    testing *test = new testing(this->setting);
+    test->Begin();
 }
